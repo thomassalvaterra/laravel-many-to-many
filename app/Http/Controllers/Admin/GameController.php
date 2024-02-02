@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Game;
+use App\Models\technology;
+use App\Models\type;
 use App\Http\Requests\StoreGameRequest;
 
 use App\Http\Requests\UpdateGameRequest;
@@ -24,7 +26,10 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view("admin.games.create");
+        $types = type::all();
+        $technologies = technology::all();
+
+        return view("admin.games.create", compact("types", "technologies"));
     }
 
     /**

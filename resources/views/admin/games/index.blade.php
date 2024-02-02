@@ -14,6 +14,17 @@
                 <h6 class="card-subtitle mb-2 text-muted">
                     {{ $game->type ? $game->type->price : 'senza prezzo' }}
                 </h6>
+                <div class="card-body">
+                    @if (count($game->technologies) > 0)
+                    <ul>
+                        @foreach ($game->technologies as $technology)
+                        <li>{{ $technology->name }}</li>
+                        @endforeach
+                    </ul>
+                    @else
+                    <span>Non ci sono technology collegate</span>
+                    @endif
+                </div>
                 <a type="button" class="btn btn-primary" href="{{ route('admin.game.show', $game->id) }}">Show</a>
                 <a type="button" class="btn btn-success" href="{{ route('admin.game.edit', $game->id) }}">Edit</a>
                 <form action="{{ route('admin.game.destroy', $game->id) }}" method="POST">
