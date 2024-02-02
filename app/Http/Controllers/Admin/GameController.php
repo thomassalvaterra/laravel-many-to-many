@@ -60,7 +60,8 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view("admin.games.edit", compact("game"));
+        $technologies = technology::all();
+        return view("admin.games.edit", compact("game", "technologies"));
     }
 
     /**
@@ -69,8 +70,6 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game)
     {
         $validati = $request->validated();
-
-
 
         $game->fill($validati);
         $game->update();
